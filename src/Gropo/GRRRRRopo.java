@@ -20,6 +20,7 @@ public class GRRRRRopo {
 			.body();
 		System.out.println(uitk);
 		System.out.println(gebruiker);
+		System.out.println(wachtwoord);
 
 
 	}
