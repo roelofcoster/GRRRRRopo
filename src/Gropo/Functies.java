@@ -1,6 +1,7 @@
 package Gropo;
 
 import org.ccil.cowan.tagsoup.Parser;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import javax.xml.transform.Transformer;
@@ -24,31 +25,26 @@ class Functies {
 	}
 
 	protected static HttpRequest postMaar(URI uri, String bericht) {
-		HttpRequest uitkomst =
-				HttpRequest.newBuilder()
+		return HttpRequest.newBuilder()
 						.uri(uri)
 						.setHeader("Content-Type", "application/x-www-form-urlencoded")
 						.POST(HttpRequest.BodyPublishers.ofString(bericht))
 						.build();
-		return uitkomst;
 	}
-	protected static HttpRequest postMaar(URI uri, String bericht, String header, String headerWaarde) {
-		HttpRequest uitkomst =
-				HttpRequest.newBuilder()
-						.uri(uri)
-						.setHeader(header, headerWaarde)
-						.POST(HttpRequest.BodyPublishers.ofString(bericht))
-						.build();
-		return uitkomst;
-	}
+//	protected static HttpRequest postMaar(URI uri, String bericht, String header, String headerWaarde) {
+//		return HttpRequest.newBuilder()
+//						.uri(uri)
+//						.setHeader(header, headerWaarde)
+//						.POST(HttpRequest.BodyPublishers.ofString(bericht))
+//						.build();
+//	}
 	protected static HttpRequest getMaar(URI uri){
-		HttpRequest uitkomst =
-				HttpRequest.newBuilder()
+	return HttpRequest.newBuilder()
 						.uri(uri)
 						.build();
-		return uitkomst;
 	}
-	protected static DOMResult document(final InputStream bericht) throws TransformerException, IOException {
+	protected static DOMResult
+		document(final InputStream bericht) throws TransformerException, IOException {
 		Reader reader = new InputStreamReader(bericht);
 		Parser parser = new Parser();
 		DOMResult uitkomst = new DOMResult();
@@ -57,16 +53,7 @@ class Functies {
 		reader.close();
 		return uitkomst;
 	}
-	protected static Node htmlBody(final DOMResult document){
-		return document
-				.getNode()  // document zelf
-				.getChildNodes()
-				.item(0) // <html>
-				.getChildNodes()
-				.item(1); // <body>; item 0 is <head>
-	}
 	protected static Node vindNode(final Node node, String nodeNaam){
-		Node uitkomst = null;
 		int lengte;
 
 		if(node.getLocalName() != null &&
@@ -74,7 +61,7 @@ class Functies {
 		lengte = node.getChildNodes().getLength();
 		if(lengte == 0) return null;
 		for(int i = 0; i < lengte; i++){
-			uitkomst = vindNode(node.getChildNodes().item(i), nodeNaam);
+			Node uitkomst = vindNode(node.getChildNodes().item(i), nodeNaam);
 			if(uitkomst != null) return uitkomst;
 		}
 		return null;
@@ -84,7 +71,6 @@ class Functies {
 			String nodeNaam,
 			String attribuutNaam,
 			String attribuutWaarde){
-		Node uitkomst = null;
 		int lengte;
 
 		if(
@@ -103,7 +89,7 @@ class Functies {
 		lengte = node.getChildNodes().getLength();
 		if(lengte == 0) return null;
 		for(int i = 0; i < lengte; i++){
-			uitkomst = vindNode(
+			Node uitkomst = vindNode(
 					node.getChildNodes().item(i),
 					nodeNaam,
 					attribuutNaam,
