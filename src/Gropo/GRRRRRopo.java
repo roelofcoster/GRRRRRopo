@@ -98,7 +98,9 @@ public class GRRRRRopo {
 					e.printStackTrace();
 				}
 				boolean beschikbaar =
-						!span.getLastChild().getNodeValue().trim().equals("Vol");
+						span.getLastChild().getNodeValue() != null &&
+						span.getLastChild().getNodeValue().contains("over");
+
 				if (Functies.tijdTussen(starttijd, t1, t2) && beschikbaar) {
 					String href = Functies.vindNode(
 							li, "a")
@@ -128,12 +130,12 @@ public class GRRRRRopo {
 							URI.create(href),
 							"_token=" + token + "&accept_terms=1" +
 							"&_token=" + token);
-					String uitk =
-							client.send(
-									request,
-									HttpResponse.BodyHandlers.ofString())
-									.body();
-					System.out.println(uitk);
+//					String uitk =
+//							client.send(
+//									request,
+//									HttpResponse.BodyHandlers.ofString())
+//									.body();
+//					System.out.println(uitk);
 					System.exit(0);
 				}
 			}
