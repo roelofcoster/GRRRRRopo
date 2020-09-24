@@ -1,7 +1,6 @@
 package Gropo;
 
 import org.ccil.cowan.tagsoup.Parser;
-import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import javax.xml.transform.Transformer;
@@ -54,11 +53,9 @@ class Functies {
 		return uitkomst;
 	}
 	protected static Node vindNode(final Node node, String nodeNaam){
-		int lengte;
-
 		if(node.getLocalName() != null &&
 				node.getLocalName().equals(nodeNaam)) return node;
-		lengte = node.getChildNodes().getLength();
+		int lengte = node.getChildNodes().getLength();
 		if(lengte == 0) return null;
 		for(int i = 0; i < lengte; i++){
 			Node uitkomst = vindNode(node.getChildNodes().item(i), nodeNaam);
@@ -71,7 +68,6 @@ class Functies {
 			String nodeNaam,
 			String attribuutNaam,
 			String attribuutWaarde){
-		int lengte;
 
 		if(
 				node.getLocalName() != null &&
@@ -86,7 +82,7 @@ class Functies {
 						.getNodeValue().equals(attribuutWaarde)
 		) return node;
 
-		lengte = node.getChildNodes().getLength();
+		int lengte = node.getChildNodes().getLength();
 		if(lengte == 0) return null;
 		for(int i = 0; i < lengte; i++){
 			Node uitkomst = vindNode(

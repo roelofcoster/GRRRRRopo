@@ -1,7 +1,8 @@
 package Gropo;
 
 import org.w3c.dom.Node;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.URI;
@@ -104,9 +105,18 @@ public class GRRRRRopo {
 							.getAttributes()
 							.getNamedItem("href")
 							.getNodeValue();
-					href = href + "/course?ref=booking";
 
+					// Het boekingsschermpje ophalen om cookies bij te werken:
+					request = Functies.getMaar(URI.create(href));
+					client.send(request,
+							HttpResponse.BodyHandlers.ofString());
+
+					// De daadwerkelijke boeking:
 					System.out.println("Boekt op: " + starttijd);
+
+					href = href + "/course?ref=booking";
+//					href = href + "/course?ref=last_minute";
+					System.out.println(href);
 					request = Functies.postMaar(
 							URI.create(href),
 							"user_product_id=31826&accept_terms=1");
@@ -115,10 +125,12 @@ public class GRRRRRopo {
 									request,
 									HttpResponse.BodyHandlers.ofString())
 									.body();
+					System.out.println(uitk);
 					System.exit(0);
 				}
 			}
-			Thread.sleep(10 * 60 * 60 * 1000); // 10 min
+			System.out.println((new Date()) + "\t Geen ruimte gevonden");
+			Thread.sleep(10 * 60 * 1000); // 10 min
 			System.out.println("Nog een poging");
 		}
 	}
