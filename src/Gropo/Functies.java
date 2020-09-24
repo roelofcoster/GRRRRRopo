@@ -42,15 +42,15 @@ class Functies {
 						.uri(uri)
 						.build();
 	}
-	protected static DOMResult
-		document(final InputStream bericht) throws TransformerException, IOException {
-		Reader reader = new InputStreamReader(bericht);
-		Parser parser = new Parser();
-		DOMResult uitkomst = new DOMResult();
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		transformer.transform(new SAXSource(parser, new InputSource(reader)), uitkomst);
-		reader.close();
-		return uitkomst;
+	protected static DOMResult document(
+		final InputStream bericht) throws TransformerException, IOException {
+			Reader reader = new InputStreamReader(bericht);
+			Parser parser = new Parser();
+			DOMResult uitkomst = new DOMResult();
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			transformer.transform(new SAXSource(parser, new InputSource(reader)), uitkomst);
+			reader.close();
+			return uitkomst;
 	}
 	protected static Node vindNode(final Node node, String nodeNaam){
 		if(node.getLocalName() != null &&

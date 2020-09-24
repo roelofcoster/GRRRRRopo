@@ -108,8 +108,15 @@ public class GRRRRRopo {
 
 					// Het boekingsschermpje ophalen om cookies bij te werken:
 					request = Functies.getMaar(URI.create(href));
-					client.send(request,
-							HttpResponse.BodyHandlers.ofString());
+					missatge = client.send(request,
+							HttpResponse.BodyHandlers.ofInputStream());
+					document = Functies.document(missatge.body());
+					String token = Functies.vindNode(
+							document.getNode(),
+							"input",
+							"name",
+							"_token")
+							.getAttributes().getNamedItem("value").getNodeValue();
 
 					// De daadwerkelijke boeking:
 					System.out.println("Boekt op: " + starttijd);
@@ -119,7 +126,8 @@ public class GRRRRRopo {
 					System.out.println(href);
 					request = Functies.postMaar(
 							URI.create(href),
-							"user_product_id=31826&accept_terms=1");
+							"_token=" + token + "&accept_terms=1" +
+							"&_token=" + token);
 					String uitk =
 							client.send(
 									request,
