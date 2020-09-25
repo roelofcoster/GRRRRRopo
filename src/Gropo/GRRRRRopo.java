@@ -47,8 +47,7 @@ public class GRRRRRopo {
 				bericht);
 		client.send(
 				request,
-				HttpResponse.BodyHandlers.ofString())
-			.body();
+				HttpResponse.BodyHandlers.ofString());
 
 
 		while(true){
@@ -130,12 +129,12 @@ public class GRRRRRopo {
 							URI.create(href),
 							"_token=" + token + "&accept_terms=1" +
 							"&_token=" + token);
-//					String uitk =
-//							client.send(
-//									request,
-//									HttpResponse.BodyHandlers.ofString())
-//									.body();
-//					System.out.println(uitk);
+					String uitk =
+							client.send(
+									request,
+									HttpResponse.BodyHandlers.ofString())
+									.body();
+					System.out.println(uitk);
 					System.exit(0);
 				}
 			}
