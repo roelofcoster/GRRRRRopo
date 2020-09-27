@@ -38,7 +38,7 @@ class Functies {
 //						.build();
 //	}
 	protected static HttpRequest getMaar(URI uri){
-	return HttpRequest.newBuilder()
+		return HttpRequest.newBuilder()
 						.uri(uri)
 						.build();
 	}
