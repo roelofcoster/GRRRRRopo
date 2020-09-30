@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="GRRRRRopo:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GRRRRRopo_jar</output-path>
+    <root id="archive" name="GRRRRRopo.jar">
+      <element id="module-output" name="GRRRRRopo" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/tagsoup-1.2.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
